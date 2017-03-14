@@ -8,6 +8,8 @@
       state: absent
     - name: postfix
       state: latest
+    - name: libsasl2-modules
+      state: latest
 
 - name: Remove any old ssmtp configuration
   file:
@@ -23,15 +25,15 @@
     mode: "{{ item.mode }}"
   with_items:
     - src: etc/postfix/main.cf.j2
-      dest: etc/postfix/main.cf
+      dest: /etc/postfix/main.cf
       owner: root
       group: root
-      mode: 0644
+      mode: 644
     - src: etc/postfix/sasl_passwd.j2
-      dest: etc/postfix/sasl_passwd
+      dest: /etc/postfix/sasl_passwd
       owner: root
       group: root
-      mode: 0600
+      mode: 600
   notify:
     - postmap passwd
     - restart postfix

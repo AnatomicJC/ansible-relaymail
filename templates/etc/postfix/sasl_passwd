@@ -1,1 +1,0 @@
-[{{ relaymail_smtp_server }}]:{{ relaymail_smtp_port }} {{ relaymail_smtp_user }}:{{ relaymail_smtp_password }}

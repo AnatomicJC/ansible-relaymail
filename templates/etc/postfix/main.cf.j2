@@ -30,7 +30,7 @@ smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 myhostname = {{ ansible_hostname }}
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
-mydestination = {{ relaymail_domain_from }}, {{ ansible_hostname }}.{{ relaymail_domain_from }}, {{ ansible_hostname }}.localdomain, {{ ansible_hostname }}, localhost.{{ relaymail_domain_from }}, localhost.localdomain, localhost
+mydestination = {{ ansible_hostname }}.localdomain, {{ ansible_hostname }}, localhost.localdomain, localhost
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
 mailbox_command = procmail -a "$EXTENSION"
 mailbox_size_limit = 0
@@ -38,7 +38,7 @@ recipient_delimiter = +
 inet_interfaces = all
 
 {% if relaymail_smtp_server %}
-relayhost = [{{ relaymail_smtp_server }}]:{{ relaymail_smtp_port }}
+relayhost = {{ relaymail_smtp_server }}:{{ relaymail_smtp_port }}
 {% endif %}
 {% if relaymail_smtp_user %}
 smtp_sasl_auth_enable = yes
@@ -46,6 +46,9 @@ smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
 smtp_sasl_security_options = noanonymous
 {% endif %}
 {% if relaymail_use_tls %}
-smtp_use_tls = yes
-smtp_tls_CAfile = /etc/postfix/cacert.pem
+smtp_tls_security_level = secure
+smtp_tls_mandatory_protocols = TLSv1
+smtp_tls_mandatory_ciphers = high
+smtp_tls_secure_cert_match = nexthop
+smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
 {% endif %}
