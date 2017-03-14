@@ -1,0 +1,8 @@
+---
+relaymail_root_aliases: user@domain.com
+relaymail_domain_from: domain.com
+relaymail_smtp_server: False
+relaymail_smtp_port: 25
+relaymail_smtp_user: False
+relaymail_smtp_password: password
+relaymail_use_tls: False
