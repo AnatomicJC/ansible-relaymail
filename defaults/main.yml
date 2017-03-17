@@ -5,3 +5,5 @@ relaymail_smtp_port: 25
 relaymail_smtp_user: False
 relaymail_smtp_password: password
 relaymail_use_tls: False
+relaymail_secure_tls: False
+relaymail_main_domain: domain.com
