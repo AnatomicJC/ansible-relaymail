@@ -38,7 +38,7 @@ recipient_delimiter = +
 inet_interfaces = all
 
 {% if relaymail_smtp_server %}
-relayhost = {{ relaymail_smtp_server }}:{{ relaymail_smtp_port }}
+relayhost = [{{ relaymail_smtp_server }}]:{{ relaymail_smtp_port }}
 {% endif %}
 {% if relaymail_smtp_user %}
 smtp_sasl_auth_enable = yes
