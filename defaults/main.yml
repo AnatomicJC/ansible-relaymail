@@ -7,3 +7,4 @@ relaymail_smtp_password: password
 relaymail_use_tls: False
 relaymail_secure_tls: False
 relaymail_main_domain: domain.com
+relaymail_inet_interfaces: 127.0.0.1
