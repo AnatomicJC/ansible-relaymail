@@ -1,4 +1,5 @@
 ---
+relaymail_enabled: False
 relaymail_root_aliases: user@domain.com
 relaymail_smtp_server: False
 relaymail_smtp_port: 25
