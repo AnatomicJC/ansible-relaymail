@@ -6,5 +6,7 @@ relaymail_smtp_user: False
 relaymail_smtp_password: password
 relaymail_use_tls: False
 relaymail_secure_tls: False
+# If your relay server has a self-generated certificate, use "may" instead of "secure"
+relaymail_security_level: "secure"
 relaymail_main_domain: domain.com
 relaymail_inet_interfaces: 127.0.0.1
