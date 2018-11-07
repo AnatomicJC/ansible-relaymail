@@ -48,4 +48,3 @@
     line: "root: {{ relaymail_root_aliases }}"
   notify:
     - newaliases
-- meta: flush_handlers

@@ -2,3 +2,5 @@
 - import_tasks: relaymail.yml
   when: relaymail_enabled
   tags: relaymail_role
+
+- meta: flush_handlers
