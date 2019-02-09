@@ -11,5 +11,6 @@ relaymail_secure_tls: False
 relaymail_security_level: "secure"
 relaymail_main_domain: domain.com
 relaymail_hostname: False
-relaymail_inet_interfaces: 127.0.0.1
+relaymail_inet_interfaces: "127.0.0.1"
+relaymail_mynetworks: ""
 relaymail_compatibility_level: 2
