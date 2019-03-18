@@ -1,0 +1,33 @@
+---
+- name: Set root alias
+  lineinfile:
+    dest: /etc/aliases
+    state: present
+    regexp: "^root"
+    line: "root: {{ relaymail_root_aliases }}"
+  notify:
+    - newaliases
+  tags: relaymail-aliases
+
+- name: Get system users
+  shell: "for ZUSER in $(find /home -maxdepth 1 -type d | sed 's!/home!!g' | sed 's!/!!'); do if grep -q ${ZUSER} /etc/passwd; then echo ${ZUSER}; fi; done"
+  register: relaymail_zusers
+  when: relaymail_user_to_root_aliases
+  tags: relaymail-aliases
+
+#- debug:
+#    msg: "{{ item }}"
+#  with_items: "{{ relaymail_zusers.stdout_lines }}"
+#  tags: relaymail-aliases
+
+- name: Redirect custom mail users to root
+  lineinfile:
+    dest: /etc/aliases
+    state: present
+    regexp: "^{{ item }}"
+    line: "{{ item }}: root"
+  notify:
+    - newaliases
+  with_items: "{{ relaymail_zusers.stdout_lines}}"
+  when: relaymail_user_to_root_aliases
+  tags: relaymail-aliases

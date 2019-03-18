@@ -39,12 +39,3 @@
   notify:
     - postmap passwd
     - restart postfix
-
-- name: Set aliases
-  lineinfile:
-    dest: /etc/aliases
-    state: present
-    regexp: "^root"
-    line: "root: {{ relaymail_root_aliases }}"
-  notify:
-    - newaliases
