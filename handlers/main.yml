@@ -4,6 +4,8 @@
 
 - name: postmap passwd
   command: postmap /etc/postfix/sasl_passwd
+  environment:
+    PATH: "${PATH}:/sbin:/usr/sbin"
 
 - name: restart postfix
   service:
