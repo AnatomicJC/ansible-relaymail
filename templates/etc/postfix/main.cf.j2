@@ -36,6 +36,7 @@ mailbox_command = procmail -a "$EXTENSION"
 mailbox_size_limit = 0
 recipient_delimiter = +
 inet_interfaces = {{ relaymail_inet_interfaces }}
+inet_protocols = {{ relaymail_inet_protocols }}
 
 {% if relaymail_smtp_server %}
 relayhost = [{{ relaymail_smtp_server }}]:{{ relaymail_smtp_port }}
