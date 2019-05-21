@@ -12,7 +12,7 @@
 - name: Get system users
   shell: "for ZUSER in $(find /home -maxdepth 1 -type d | sed 's!/home!!g' | sed 's!/!!'); do if grep -q ${ZUSER} /etc/passwd; then echo ${ZUSER}; fi; done"
   register: relaymail_zusers
-  when: relaymail_user_to_root_aliases
+  when: relaymail_user_to_root_aliases|bool
   tags: relaymail-aliases
 
 #- debug:
@@ -29,5 +29,5 @@
   notify:
     - newaliases
   with_items: "{{ relaymail_zusers.stdout_lines}}"
-  when: relaymail_user_to_root_aliases
+  when: relaymail_user_to_root_aliases|bool
   tags: relaymail-aliases

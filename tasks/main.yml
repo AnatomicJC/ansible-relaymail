@@ -1,10 +1,10 @@
 ---
 - import_tasks: relaymail.yml
-  when: relaymail_enabled
+  when: relaymail_enabled|bool
   tags: relaymail_role
 
 - import_tasks: relaymail-aliases.yml
-  when: relaymail_enabled
+  when: relaymail_enabled|bool
   tags: relaymail_role
 
 - meta: flush_handlers
