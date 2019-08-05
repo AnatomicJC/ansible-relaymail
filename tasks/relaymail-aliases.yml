@@ -13,6 +13,8 @@
   shell: |-
     set -o pipefail
     for ZUSER in $(find /home -maxdepth 1 -type d | sed 's!/home!!g' | sed 's!/!!'); do if grep -q ${ZUSER} /etc/passwd; then echo ${ZUSER}; fi; done
+  args:
+    executable: /bin/bash
   register: relaymail_zusers
   when: relaymail_user_to_root_aliases|bool
   tags: relaymail-aliases
