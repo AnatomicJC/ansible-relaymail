@@ -1,0 +1,3 @@
+{% if relaymail_global_sender_overwrite %}
+/From:.*/ REPLACE From: {{ relaymail_global_sender_overwrite }}
+{% endif %}

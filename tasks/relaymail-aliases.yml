@@ -18,6 +18,7 @@
   register: relaymail_zusers
   when: relaymail_user_to_root_aliases|bool
   tags: relaymail-aliases
+  changed_when: False
 
 #- debug:
 #    msg: "{{ item }}"

@@ -62,3 +62,9 @@ smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
 {% endif %}
 
 compatibility_level = {{ relaymail_compatibility_level }}
+{% if relaymail_global_sender_overwrite %}
+
+sender_canonical_classes = envelope_sender, header_sender
+sender_canonical_maps =  regexp:/etc/postfix/sender_canonical_maps
+smtp_header_checks = regexp:/etc/postfix/header_check
+{% endif %}

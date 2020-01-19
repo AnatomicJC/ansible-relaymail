@@ -1,22 +1,11 @@
 ---
-- name: Install postfix and be sure there is no more ssmtp
-  apt:
-    name: "{{ item.name }}"
-    state: "{{ item.state }}"
-  with_items:
-    - name: postfix
-      state: latest
-    - name: bsd-mailx
-      state: latest
-    - name: libsasl2-modules
-      state: latest
-    - name: ssmtp
-      state: absent
-
-- name: Remove any old ssmtp configuration
-  file:
-    dest: /etc/ssmtp
-    state: absent
+- name: Install postfix
+  package:
+    name:
+      - postfix
+      - bsd-mailx
+      - libsasl2-modules
+    state: present
 
 - name: Copy postfix config files
   template:
@@ -36,6 +25,16 @@
       owner: root
       group: root
       mode: "0600"
+    - src: etc/postfix/sender_canonical_maps.j2
+      dest: /etc/postfix/sender_canonical_maps
+      owner: root
+      group: root
+      mode: "0644"
+    - src: etc/postfix/header_check.j2
+      dest: /etc/postfix/header_check
+      owner: root
+      group: root
+      mode: "0644"
   notify:
     - postmap passwd
     - restart postfix
